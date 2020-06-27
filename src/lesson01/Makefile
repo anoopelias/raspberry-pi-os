@@ -1,7 +1,7 @@
 ARMGNU ?= aarch64-linux-gnu
 
 COPS = -Wall -nostdlib -nostartfiles -ffreestanding -Iinclude -mgeneral-regs-only
-ASMOPS = -Iinclude 
+ASMOPS = -Iinclude
 
 BUILD_DIR = build
 SRC_DIR = src
@@ -9,7 +9,7 @@ SRC_DIR = src
 all : kernel8.img
 
 clean :
-	rm -rf $(BUILD_DIR) *.img 
+	rm -rf $(BUILD_DIR) *.img
 
 $(BUILD_DIR)/%_c.o: $(SRC_DIR)/%.c
 	mkdir -p $(@D)
