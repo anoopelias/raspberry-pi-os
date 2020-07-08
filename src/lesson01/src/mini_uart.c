@@ -30,6 +30,8 @@ void uart_send_string(char* str)
 void uart_init ( void )
 {
 	unsigned int selector;
+	int baud_rate = 57600;
+	int baud_reg = (250000000 / (8 * baud_rate)) - 1;
 
 	selector = get32(GPFSEL1);
 	selector &= ~(7<<12);                   // clean gpio14
@@ -49,7 +51,7 @@ void uart_init ( void )
 	put32(AUX_MU_IER_REG,0);                //Disable receive and transmit interrupts
 	put32(AUX_MU_LCR_REG,3);                //Enable 8 bit mode
 	put32(AUX_MU_MCR_REG,0);                //Set RTS line to be always high
-	put32(AUX_MU_BAUD_REG,270);             //Set baud rate to 115200
+	put32(AUX_MU_BAUD_REG,baud_reg);        //Set baud rate to baud_rate
 
 	put32(AUX_MU_CNTL_REG,3);               //Finally, enable transmitter and receiver
 }
