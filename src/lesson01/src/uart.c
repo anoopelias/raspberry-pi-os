@@ -44,9 +44,9 @@ void puart_init ( void )
 	delay(150);
 	put32(GPPUDCLK0,0);
 
-	put32(UART_LRCH,(3<<5));             // Set word length to 8 bits
 	put32(UART_IBRD,26);                 // Set integer baud rate 115200 divisor
 	put32(UART_FBRD,3);                  // Set fractional baud rate 115200 divisor
+	put32(UART_LRCH,(3<<5));             // Set word length to 8 bits
 
 	put32(UART_CR,(1<<9)|(1<<8)|1);      // Enable transmit, receive and uart
 
